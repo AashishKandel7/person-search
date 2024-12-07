@@ -1,0 +1,18 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Change this to your database provider (e.g., mysql, sqlite, etc.)
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String  @id @default(cuid()) // Using `cuid()` for unique IDs
+  name        String  @db.VarChar(255)     // Adjust length as needed
+  email       String  @unique
+  phoneNumber String  @unique
+}
+
